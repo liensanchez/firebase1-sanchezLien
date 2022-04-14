@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useState} from 'react';
 import productos from '../Item/Item';
 import ItemList from '../ItemList/ItemList';
+import { getFirestore, doc, getDoc } from 'firebase/firestore'
+
 
 
 
@@ -25,6 +27,23 @@ const task = new Promise ( (resolve, reject) => {
 
 
 function ItemListContainer({greeting}) {
+
+  useEffect (()=>{
+
+    const querydb = getFirestore()
+
+    const queryProd = doc (querydb, 'productos','4gPRz9gZn7cTOauuH677')
+
+    getDoc(queryProd)
+    .then(resp=>console.log(resp))
+
+  },[])
+
+
+
+
+
+
 
   setTimeout(() => {
     task
